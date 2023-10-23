@@ -1,9 +1,12 @@
+import React from "react";
+import FLogo from "../assets/images/Logo2.png";
+
 function LoginPage() {
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="flex items-center mb-2 ">
-          <img className="w-60" src="./src/assets/images/Logo2.png" alt="logo" />
+          <img className="w-60" src={FLogo} alt="logo" />
         </div>
         <div className="w-full bg-[#F4A115] rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

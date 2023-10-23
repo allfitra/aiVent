@@ -1,10 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import Banner from "../assets/images/Banner.png";
 
 function HomeContent() {
   return (
     <div className="my-14">
       <div className="flex flex-col items-center mx-14 md:mx-auto lg:py-0 mb-10">
-        <img className="h-auto max-w-full rounded-3xl" src="./src/assets/images/Banner.png" alt="logo" />
+        <img className="h-auto max-w-full rounded-3xl" src={Banner} alt="logo" />
       </div>
       <div className="mx-auto max-w-screen-xl lg:py-3">
         <div className="md:flex md:justify-between">

@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/images/Logo2.png";
+import FLogo from "../assets/images/Logo2.png";
 
 function Footer() {
   return (
@@ -9,7 +9,7 @@ function Footer() {
         <div className="md:flex md:justify-between">
           <div className="mb-6 ml-10 md:mb-0">
             <a href="#" className="flex items-center">
-              <img src={Logo} className="w-auto mr-3" alt="FlowBite Logo" />
+              <img src={FLogo} className="w-auto mr-3" alt="FlowBite Logo" />
             </a>
           </div>
           <div className="mx-10">
