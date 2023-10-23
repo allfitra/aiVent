@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "../assets/images/Logo1.png";
 
 function Header() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -8,7 +9,7 @@ function Header() {
       <nav className="bg-[#F96B03] lg:px-10 py-3 mb-6">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link reloadDocument to={"/"} className="flex items-center">
-            <img src="./src/assets/images/Logo1.png" className="ml-5 h-10" alt="aiVents Logo" />
+            <img src={Logo} className="ml-5 h-10" alt="aiVents Logo" />
           </Link>
           <div className="flex items-center lg:order-2">
             <Link reloadDocument to={"/login"} className="text-black dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 ">
