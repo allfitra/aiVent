@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import HLogo from "../assets/images/Logo1.png";
+import HLogo from "/assets/images/Logo1.png";
 
 function Header() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);

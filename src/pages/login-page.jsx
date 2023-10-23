@@ -1,5 +1,5 @@
 import React from "react";
-import FLogo from "../assets/images/Logo2.png";
+import FLogo from "/assets/images/Logo2.png";
 
 function LoginPage() {
   return (

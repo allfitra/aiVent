@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Banner from "../assets/images/Banner.png";
+import Banner from "/assets/images/Banner.png";
 
 function HomeContent() {
   return (
@@ -18,7 +18,7 @@ function HomeContent() {
               <li className="py-3 sm:py-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <img className="w-52 h-52 rounded-md" src="./src/assets/images/Event image.jpeg" alt="Image Event" />
+                    <img className="w-52 h-52 rounded-md" src="/assets/images/Event image.jpeg" alt="Image Event" />
                   </div>
                   <div className=" min-w-0">
                     <h2 className="text-3xl ml-[-2px] font-bold text-gray-900 dark:text-white">Event Title</h2>
@@ -36,7 +36,7 @@ function HomeContent() {
               <li className="py-3 sm:py-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <img className="w-52 h-52 rounded-md" src="./src/assets/images/Event image.jpeg" alt="Image Event" />
+                    <img className="w-52 h-52 rounded-md" src="/assets/images/Event image.jpeg" alt="Image Event" />
                   </div>
                   <div className=" min-w-0">
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Event Title</h2>
@@ -53,7 +53,7 @@ function HomeContent() {
               <li className="py-3 sm:py-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <img className="w-52 h-52 rounded-md" src="./src/assets/images/Event image.jpeg" alt="Image Event" />
+                    <img className="w-52 h-52 rounded-md" src="/assets/images/Event image.jpeg" alt="Image Event" />
                   </div>
                   <div className=" min-w-0">
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Event Title</h2>
@@ -70,7 +70,7 @@ function HomeContent() {
               <li className="py-3 sm:py-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <img className="w-52 h-52 rounded-md" src="./src/assets/images/Event image.jpeg" alt="Image Event" />
+                    <img className="w-52 h-52 rounded-md" src="/assets/images/Event image.jpeg" alt="Image Event" />
                   </div>
                   <div className=" min-w-0">
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Event Title</h2>
@@ -87,7 +87,7 @@ function HomeContent() {
               <li className="py-3 sm:py-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <img className="w-52 h-52 rounded-md" src="./src/assets/images/Event image.jpeg" alt="Image Event" />
+                    <img className="w-52 h-52 rounded-md" src="/assets/images/Event image.jpeg" alt="Image Event" />
                   </div>
                   <div className=" min-w-0">
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Event Title</h2>
@@ -104,7 +104,7 @@ function HomeContent() {
               <li className="py-3 sm:py-6">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <img className="w-52 h-52 rounded-md" src="./src/assets/images/Event image.jpeg" alt="Image Event" />
+                    <img className="w-52 h-52 rounded-md" src="/assets/images/Event image.jpeg" alt="Image Event" />
                   </div>
                   <div className=" min-w-0">
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Event Title</h2>
