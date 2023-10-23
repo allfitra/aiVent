@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function HomeContent() {
   return (
     <div className="my-14">
@@ -17,14 +19,15 @@ function HomeContent() {
                     <img className="w-52 h-52 rounded-md" src="./src/assets/images/Event image.jpeg" alt="Image Event" />
                   </div>
                   <div className=" min-w-0">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Event Title</h2>
+                    <h2 className="text-3xl ml-[-2px] font-bold text-gray-900 dark:text-white">Event Title</h2>
+                    <h2 className="text-ls font-semi-bold text-gray-900 dark:text-white">20 Oktober 2023</h2>
                     <p className="text-sm mt-3 mb-3 md:mt-4 md:mb-6 text-gray-700 dark:text-gray-400 text-justify">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nemo dolor totam corrupti. Quam dolores doloribus fugit, quas aliquam laboriosam quisquam sapiente eaque accusantium laborum debitis exercitationem
                       voluptatum animi eos, quo possimus labore, maxime officiis rem. Adipisci maxime aliquam eius dignissimos eum, minus necessitatibus quasi a dicta mollitia error dolore.
                     </p>
-                    <a href="#">
+                    <Link reloadDocument to={"detail-event"}>
                       <span className="text-lg text-[#C98411] hover:text-[#F96B03]">Selengkapnya... </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </li>

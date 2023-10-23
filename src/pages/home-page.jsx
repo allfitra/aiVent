@@ -6,9 +6,9 @@ import HomeContent from "../components/home-content";
 function HomePage() {
   return (
     <>
-      {/* <Header></Header> */}
+      <Header></Header>
       <HomeContent></HomeContent>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </>
   );
 }
