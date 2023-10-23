@@ -1,15 +1,15 @@
 import Footer from "../components/footer";
-import FormInputEvent from "../components/form-input";
 import Header from "../components/header";
+import DataFromUser from "../components/table-event";
 
-function InputEvent() {
+function RequestUser() {
   return (
     <>
       <Header></Header>
-      <FormInputEvent></FormInputEvent>
+      <DataFromUser></DataFromUser>
       <Footer></Footer>
     </>
   );
 }
 
-export default InputEvent;
+export default RequestUser;
