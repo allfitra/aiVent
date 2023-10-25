@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import ContactPage from "../pages/contact.-page";
 import DetailEvent from "../pages/detail-event";
 import HomePage from "../pages/home-page";
 import InputEvent from "../pages/input-event";
@@ -14,6 +15,7 @@ function SetupRoutes() {
       <Route path="/detail-event" element={<DetailEvent />} />
       <Route path="/event-list" element={<RequestUser />} />
       <Route path="/input-event" element={<InputEvent />} />
+      <Route path="/contact" element={<ContactPage />} />
     </Routes>
   );
 }

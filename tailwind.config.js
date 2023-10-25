@@ -8,13 +8,19 @@ export default {
     "./src/components/detail-content.jsx",
     "./src/components/form-input.jsx",
     "./src/components/table-event.jsx",
+    "./src/components/contact-content.jsx",
+    "./src/components/side-content.jsx",
     "./src/pages/home-page.jsx",
     "./src/pages/login-page.jsx",
     "./src/pages/detail-event.jsx",
     "./src/pages/list-event-user.jsx",
     "./src/pages/input-event.jsx",
+    "./src/pages/contact-page.jsx",
     "node_modules/flowbite-react/lib/cjs/index.js",
     "node_modules/flowbite-react/lib/esm/index.js",
+
+    "node_modules/flowbite-datepicker/dist/js/datepicker.min.js",
+    "node_modules/flowbite-datepicker/js/main.js",
   ],
   theme: {
     extend: {

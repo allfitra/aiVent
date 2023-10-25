@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import Datepicker from "flowbite-datepicker/Datepicker";
+import { Datepicker } from "flowbite-react";
+import { db } from "../configs/firebase";
+import { push, ref } from "firebase/database";
+import { v4 as uuidv4 } from "uuid";
 
 function FormInputEvent() {
   const initialFormState = {
-    id: "",
+    id: uuidv4,
     eventName: "",
     eventCategory: "",
     eventImage: null,
@@ -60,13 +63,17 @@ function FormInputEvent() {
     //   return;
     // }
 
-    // try {
-    //   await axios.post(`${import.meta.env.VITE_API_URL}/products`, product);
-    //   alert("Data berhasil disimpan!");
-    //   window.location.reload();
-    // } catch (error) {
-    //   alert("Error saat menyimpan data.");
-    // }
+    try {
+      const eventsRef = ref(db, "aiVents");
+      push(eventsRef, events);
+      // window.location.reload();
+      alert("input data berhasil");
+
+      setEvents(initialFormState);
+    } catch (error) {
+      alert("Error saat menyimpan data.");
+    }
+    console.log(events);
   };
 
   //   const handleSubmitUpdate = async (e) => {
@@ -79,7 +86,6 @@ function FormInputEvent() {
   //       alert("Terjadi kesalahan saat memperbarui data.");
   //     }
   //   };
-  console.log(events.eventName);
   return (
     <div className="w-75 mt-3 flex flex-col items-center">
       <div className="px-[30px] md:px-[100px] md:pt-6 rounded-xl bg-gray-400">
@@ -110,27 +116,32 @@ function FormInputEvent() {
               </label>
               <select
                 id="eventCategory"
+                name="eventCategory"
+                value={events.eventCategory}
+                onChange={handleChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                <option>Choose.</option>
-                <option>Konser</option>
-                <option>Bazar</option>
-                <option>Festival</option>
-                <option>Seminar</option>
+                <option value="">Choose.</option>
+                <option value="konser">Konser</option>
+                <option value="bazar">Bazar</option>
+                <option value="fetival">Festival</option>
+                <option value="seminar">Seminar</option>
               </select>
             </div>
             <br />
             <div>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="user_avatar">
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="eventImage">
                 Upload file
               </label>
               <input
                 className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                aria-describedby="user_avatar_help"
-                id="user_avatar"
+                aria-describedby="eventImage_help"
                 type="file"
+                id="eventImage"
+                name="eventImage"
+                onChange={handleImageChange}
               />
-              <div className="mt-1 mb-5 text-sm text-gray-700 dark:text-gray-300" id="user_avatar_help">
+              <div className="mt-1 mb-5 text-sm text-gray-700 dark:text-gray-300" id="eventImage_help">
                 Inputkan gambar produk, banner, atau apapun tentang event anda.
               </div>
             </div>
@@ -153,16 +164,19 @@ function FormInputEvent() {
                 Date Event :
               </label>
               <div className="relative max-w-sm">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                   <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                   </svg>
                 </div>
                 <input
-                  datepicker=""
-                  datepicker-autohide=""
+                  datepicker="Datepicker"
+                  id="eventDate"
+                  name="eventDate"
+                  onChange={handleChange}
+                  value={events.eventDate}
                   type="text"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Select date"
                 />
               </div>
@@ -187,6 +201,7 @@ function FormInputEvent() {
               </label>
               <textarea
                 id="eventDescription"
+                name="eventDescription"
                 rows={4}
                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Input Description Event..."

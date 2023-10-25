@@ -1,3 +1,5 @@
+import SideContent from "./side-content";
+
 function DetailContent() {
   return (
     <div className="my-14 px-14 ">
@@ -10,7 +12,7 @@ function DetailContent() {
             <div className="py-3 max-h-[1300px]">
               <div className=" items-center space-x-4">
                 <div className="bg-gray-300 flex flex-col items-center mx-14 md:mx-auto lg:py-0 mb-10 h-[300px]">
-                  <img className="max-w-[500px] h-full py-3 px-4" src="./src/assets/images/Event image.jpeg" alt="logo" />
+                  <img className="max-w-[500px] h-full py-3 px-4" src="/assets/images/Event image.jpeg" alt="logo" />
                 </div>
                 <div className=" min-w-0 ">
                   <h2 className="text-ls font-semi-bold text-gray-900 dark:text-white">Tanggal : 20 Oktober 2023</h2>
@@ -24,9 +26,7 @@ function DetailContent() {
               </div>
             </div>
           </ul>
-          <div className="border-t-4 md:mt-14 md:border-t-0 md:border-l-8 p-2 md:p-6 border-black ml-14 md:ml-0 mr-14 bg-gray-500 max-w-full md:w-[600px]">
-            <div> haloo </div>
-          </div>
+          <SideContent></SideContent>
         </div>
       </div>
     </div>

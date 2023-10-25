@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Banner from "/assets/images/Banner.png";
+import SideContent from "./side-content";
 
 function HomeContent() {
   return (
@@ -120,9 +121,7 @@ function HomeContent() {
               </li>
             </div>
           </ul>
-          <div className="border-t-4 md:border-t-0 md:border-l-8 p-2 md:p-6 border-black ml-14 md:ml-0 mr-14 bg-gray-500 max-w-full md:w-[600px]">
-            <div> haloo </div>
-          </div>
+          <SideContent></SideContent>
         </div>
       </div>
     </div>
