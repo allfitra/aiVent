@@ -1,7 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { db } from "../configs/firebase";
+// import "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 import FLogo from "/assets/images/Logo2.png";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
+  const [adminLogin, setAdminLogin] = useState({
+    username: "",
+    password: "",
+  });
+  const [admins, setAdmins] = useState([]);
+
+  const getAdmins = async () => {
+    const querySnapshot = await getDocs(collection(db, "admins"));
+    const admins = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    setAdmins(admins);
+  };
+
+  useEffect(() => {
+    getAdmins();
+  }, []);
+  console.log(admins);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAdminLogin((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const { username, password } = adminLogin;
+    const cekLogin = admins.find((admin) => admin.username === username && admin.password === password);
+
+    if (cekLogin) {
+      localStorage.setItem("admin", JSON.stringify(cekLogin));
+      localStorage.setItem("isLoggedIn", true);
+      alert("Login Success");
+      return navigate("/event-list");
+    } else {
+      alert("Invalid username or password");
+    }
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -11,7 +55,7 @@ function LoginPage() {
         <div className="w-full bg-[#F4A115] rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl dark:text-white">Login Here</h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form onSubmit={handleLogin} className="space-y-4 md:space-y-6">
               <div>
                 <label htmlFor="username" className=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Username
@@ -20,6 +64,8 @@ function LoginPage() {
                   type="text"
                   name="username"
                   id="username"
+                  value={adminLogin.username}
+                  onChange={handleChange}
                   className="bg-[#4D4D63] border border-[#4D4D63]-300 text-white-900 placeholder-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Masukkan username.."
                   required=""
@@ -32,6 +78,8 @@ function LoginPage() {
                 <input
                   type="password"
                   name="password"
+                  value={adminLogin.password}
+                  onChange={handleChange}
                   id="password"
                   placeholder="••••••••"
                   className="bg-[#4D4D63] border border-[#4D4D63]-300 text-white-900 placeholder-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

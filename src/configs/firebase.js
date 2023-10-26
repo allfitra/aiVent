@@ -1,25 +1,17 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
-// import { getFirestore } from "firebase/firestore";
-// import "firebase/auth";
-// import "firebase/storage";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCVxx-hIDoND0941r-7mKpBql-49wInDzo",
-  authDomain: "aivents-a0c5d.firebaseapp.com",
-  databaseURL: "https://aivents-a0c5d-default-rtdb.firebaseio.com",
-  projectId: "aivents-a0c5d",
-  storageBucket: "aivents-a0c5d.appspot.com",
-  messagingSenderId: "483050174504",
-  appId: "1:483050174504:web:5e29852fa5079bbb10dd1d",
-  measurementId: "G-J7TM0ZMDRN",
+  apiKey: "AIzaSyBl4Yhpl4TNvmn_ZrGSk33y7hjyvWLqykI",
+  authDomain: "aiventss.firebaseapp.com",
+  projectId: "aiventss",
+  storageBucket: "gs://aiventss.appspot.com",
+  messagingSenderId: "190265324182",
+  appId: "1:190265324182:web:565519d617c941289d48b7",
+  measurementId: "G-J3YNB027J2",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app);
+export const db = getFirestore(app);
+export const storage = getStorage();
