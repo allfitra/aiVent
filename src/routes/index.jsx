@@ -7,17 +7,26 @@ import InputEvent from "../pages/input-event";
 import UpdateEvent from "../pages/update-event";
 import LoginPage from "../pages/login-page";
 import RequestUser from "../pages/list-event-user";
+import NotFound from "../components/_404";
 
 function SetupRoutes() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  function clearLocalStorage() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("admin");
+  }
+
   return (
     <Routes>
+      <Route path="*" element={<NotFound />} />
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/admin" element={<LoginPage />} />
       <Route path="/detail/:id" element={<DetailEvent />} />
-      <Route path="/event-list" element={<RequestUser />} />
       <Route path="/input-event" element={<InputEvent />} />
-      <Route path="/update/:id" element={<UpdateEvent />} />
       <Route path="/contact" element={<ContactPage />} />
+      {isLoggedIn === "true" && <Route path="/event-list" element={<RequestUser />} />}
+      {isLoggedIn === "true" && <Route path="/update/:id" element={<UpdateEvent />} />}
     </Routes>
   );
 }

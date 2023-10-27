@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { db } from "../configs/firebase";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
 
 function DataFromUser() {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
 
   const getEvents = async () => {
@@ -22,13 +23,28 @@ function DataFromUser() {
       await deleteDoc(doc(db, "events", id));
       alert("Event has been deleted");
       // window.location.reload();
-      const eventsCopy = events.filter((employee) => employee.id !== id);
+      const eventsCopy = events.filter((event) => event.id !== id);
       setEvents(eventsCopy);
     } catch (error) {
       console.error("Error deleting event: ", error);
     }
   };
-  console.log(events.eventName);
+
+  const handleAcc = async (id) => {
+    try {
+      await updateDoc(doc(db, "events", id), {
+        eventAcc: true,
+      });
+      alert("Event has been accepted");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error accepting event: ", error);
+    }
+  };
+
+  const handleEdit = (id) => {
+    navigate(`/update/${id}`);
+  };
   return (
     <div className="my-14 mx-14 rounded-3xl bg-gray-100 max-w-screen">
       <div className="flex flex-col items-center mb-2 mx-16">
@@ -74,7 +90,14 @@ function DataFromUser() {
                     {event.eventName}
                   </th>
                   <td className="px-4 py-4">
-                    <Link to={event.eventImage} target="_blank" className="text-blue-700">
+                    <Link
+                      to={
+                        event.eventImage ||
+                        `https://firebasestorage.googleapis.com/v0/b/aiventss.appspot.com/o/events%2FEvent%20image.jpeg?alt=media&token=a56135d6-21b5-452e-bae9-f519688ab9a4&_gl=1*1t8zkiy*_ga*MjgzMDIzNTI0LjE2OTczMDA2MjU.*_ga_CW55HF8NVT*MTY5ODM4MTYyNi4yMi4xLjE2OTgzODE2NTcuMjkuMC4w`
+                      }
+                      target="_blank"
+                      className="text-blue-700"
+                    >
                       Lihat gambar
                     </Link>
                   </td>
@@ -113,22 +136,39 @@ function DataFromUser() {
                     </Popup>
                   </td>
                   <td>
-                    <div className="flex flex-col items-center">
-                      <button
-                        type="button"
-                        className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 my-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                      >
-                        Accept
-                      </button>
+                    {!event.eventAcc ? (
+                      <div className="flex flex-col items-center">
+                        <button
+                          type="button"
+                          onClick={() => handleAcc(event.id)}
+                          className="min-w-[100px] mx-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 my-2 "
+                        >
+                          Accept
+                        </button>
 
-                      <button
-                        type="button"
-                        onClick={() => handleDelete(event.id)}
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                      >
-                        Reject
-                      </button>
-                    </div>
+                        <button
+                          type="button"
+                          onClick={() => handleDelete(event.id)}
+                          className="min-w-[100px] mx-2 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 "
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center">
+                        <div className="min-w-[100px] mx-2 text-green-700  border border-green-700  focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 cursor-not-allowed">
+                          Accepted
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => handleEdit(event.id)}
+                          className="min-w-[100px] mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
+                        >
+                          Edit
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../configs/firebase";
-// import "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import FLogo from "/assets/images/Logo2.png";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  localStorage.setItem("isLoggedIn", false);
   const navigate = useNavigate();
   const [adminLogin, setAdminLogin] = useState({
     username: "",
@@ -41,11 +41,13 @@ function LoginPage() {
       localStorage.setItem("admin", JSON.stringify(cekLogin));
       localStorage.setItem("isLoggedIn", true);
       alert("Login Success");
-      return navigate("/event-list");
+      navigate("/event-list");
+      window.location.reload();
     } else {
       alert("Invalid username or password");
     }
   };
+
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

@@ -51,7 +51,14 @@ function DetailContent() {
             <div className="py-3 min max-h-[1300px]">
               <div className=" items-center space-x-4">
                 <div className="bg-gray-300 flex flex-col items-center mx-14 min-w-0 md:min-w-[850px] md:mx-auto md:mb-6 lg:py-0 mb-10 h-[300px]">
-                  <img className="max-w-[500px] h-full py-3 px-4" src={event.eventImage} alt="logo" />
+                  <img
+                    className="max-w-[500px] h-full py-3 px-4"
+                    src={
+                      event.eventImage ||
+                      `https://firebasestorage.googleapis.com/v0/b/aiventss.appspot.com/o/events%2FEvent%20image.jpeg?alt=media&token=a56135d6-21b5-452e-bae9-f519688ab9a4&_gl=1*1t8zkiy*_ga*MjgzMDIzNTI0LjE2OTczMDA2MjU.*_ga_CW55HF8NVT*MTY5ODM4MTYyNi4yMi4xLjE2OTgzODE2NTcuMjkuMC4w`
+                    }
+                    alt="logo"
+                  />
                 </div>
                 <div className=" min-w-0 ">
                   <div className="text-white uppercase bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">

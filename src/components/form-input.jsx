@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { db, storage } from "../configs/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
 function FormInputEvent() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
   const initialFormState = {
-    eventId: uuidv4,
+    eventId: null,
     eventName: "",
     eventCategory: "",
-    eventImage: null,
+    eventImage: "",
     eventDate: "",
     eventContact: "",
     eventLocation: "",
@@ -19,6 +20,20 @@ function FormInputEvent() {
 
   const [events, setEvents] = useState(initialFormState);
   const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    if (isLoggedIn === "true") {
+      setEvents((prevData) => ({
+        ...prevData,
+        eventAcc: true,
+      }));
+    } else {
+      setEvents((prevData) => ({
+        ...prevData,
+        eventAcc: false,
+      }));
+    }
+  }, [isLoggedIn]);
 
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
@@ -70,8 +85,12 @@ function FormInputEvent() {
 
             try {
               const docRef = addDoc(collection(db, "events"), newEvent);
-              console.log("Event added with ID: ", docRef.id);
-              window.location.reload();
+              console.log("Success Adding Event: ", docRef);
+              if (isLoggedIn === "false") {
+                alert("data berhasil di tambahkan, harap menunggu persetujuan admin");
+              } else {
+                alert("data berhasil di tambahkan");
+              }
             } catch (error) {
               console.error("Error adding event: ", error);
             }

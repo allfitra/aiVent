@@ -4,6 +4,8 @@ import HLogo from "/assets/images/Logo1.png";
 
 function Header() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  console.log(isLoggedIn);
   return (
     <header>
       <nav className="bg-[#F96B03] lg:px-10 py-3 mb-6">
@@ -12,9 +14,12 @@ function Header() {
             <img src={HLogo} className="ml-5 h-10" alt="aiVents Logo" />
           </Link>
           <div className="flex items-center lg:order-2">
-            <Link reloadDocument to={"/login"} className="text-black dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 ">
-              Log in
-            </Link>
+            {isLoggedIn === "true" && (
+              <Link reloadDocument to={"/admin"} className="text-black dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 ">
+                Logout
+              </Link>
+            )}
+
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
@@ -53,6 +58,13 @@ function Header() {
                   Contact
                 </Link>
               </li>
+              {isLoggedIn === "true" && (
+                <li>
+                  <Link reloadDocument to={"/event-list"} className="block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">
+                    List Event
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

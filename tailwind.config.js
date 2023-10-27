@@ -12,6 +12,7 @@ export default {
     "./src/components/contact-content.jsx",
     "./src/components/side-content.jsx",
     "./src/components/ai-box.jsx",
+    "./src/components/_404.jsx",
     "./src/pages/home-page.jsx",
     "./src/pages/login-page.jsx",
     "./src/pages/detail-event.jsx",
