@@ -10,7 +10,7 @@ function FormInputEvent() {
     eventId: null,
     eventName: "",
     eventCategory: "",
-    eventImage: "",
+    eventImage: null,
     eventDate: "",
     eventContact: "",
     eventLocation: "",
@@ -85,7 +85,7 @@ function FormInputEvent() {
 
             try {
               const docRef = addDoc(collection(db, "events"), newEvent);
-              console.log("Success Adding Event: ", docRef);
+              console.log("Success Adding Event: ", docRef.id);
               if (isLoggedIn === "false") {
                 alert("data berhasil di tambahkan, harap menunggu persetujuan admin");
               } else {
@@ -103,7 +103,12 @@ function FormInputEvent() {
       const { eventId, ...eventData } = events;
       try {
         const docRef = addDoc(collection(db, "events"), eventData);
-        console.log("Event added with ID: ", docRef.id);
+        console.log("Success Adding Event: ", docRef.id);
+        if (isLoggedIn === "false") {
+          alert("data berhasil di tambahkan, harap menunggu persetujuan admin");
+        } else {
+          alert("data berhasil di tambahkan");
+        }
       } catch (error) {
         console.error("Error adding event: ", error);
       }

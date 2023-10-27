@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Banner from "/assets/images/Banner.png";
+import EventImage from "/assets/images/Event image.jpeg";
 import SideContent from "./side-content";
 import { db } from "../configs/firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -35,14 +36,7 @@ function HomeContent() {
                     <div className="py-3 sm:py-6 border-2 border-b-black">
                       <div className="flex items-center space-x-4">
                         <div className="flex-shrink-0">
-                          <img
-                            className="w-52 h-52 rounded-md"
-                            src={
-                              event.eventImage ||
-                              `https://firebasestorage.googleapis.com/v0/b/aiventss.appspot.com/o/events%2FEvent%20image.jpeg?alt=media&token=a56135d6-21b5-452e-bae9-f519688ab9a4&_gl=1*1t8zkiy*_ga*MjgzMDIzNTI0LjE2OTczMDA2MjU.*_ga_CW55HF8NVT*MTY5ODM4MTYyNi4yMi4xLjE2OTgzODE2NTcuMjkuMC4w`
-                            }
-                            alt="Image Event"
-                          />
+                          <img className="w-52 h-52 rounded-md" src={event.eventImage || EventImage} alt="Image Event" />
                         </div>
                         <div className=" min-w-0">
                           <h2 className="text-3xl ml-[-2px] font-bold text-gray-900 dark:text-white">{event.eventName}</h2>

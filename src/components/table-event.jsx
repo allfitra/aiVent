@@ -90,14 +90,7 @@ function DataFromUser() {
                     {event.eventName}
                   </th>
                   <td className="px-4 py-4">
-                    <Link
-                      to={
-                        event.eventImage ||
-                        `https://firebasestorage.googleapis.com/v0/b/aiventss.appspot.com/o/events%2FEvent%20image.jpeg?alt=media&token=a56135d6-21b5-452e-bae9-f519688ab9a4&_gl=1*1t8zkiy*_ga*MjgzMDIzNTI0LjE2OTczMDA2MjU.*_ga_CW55HF8NVT*MTY5ODM4MTYyNi4yMi4xLjE2OTgzODE2NTcuMjkuMC4w`
-                      }
-                      target="_blank"
-                      className="text-blue-700"
-                    >
+                    <Link to={event.eventImage || alert("Tidak ada gambar")} target="_blank" className="text-blue-700">
                       Lihat gambar
                     </Link>
                   </td>
