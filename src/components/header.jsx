@@ -5,7 +5,6 @@ import HLogo from "/assets/images/Logo1.png";
 function Header() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
   const isLoggedIn = localStorage.getItem("isLoggedIn");
-  console.log(isLoggedIn);
   return (
     <header>
       <nav className="bg-[#F96B03] lg:px-10 py-3 mb-6">

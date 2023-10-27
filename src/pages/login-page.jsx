@@ -22,7 +22,6 @@ function LoginPage() {
   useEffect(() => {
     getAdmins();
   }, []);
-  console.log(admins);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
