@@ -1,30 +1,19 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { db } from "../configs/firebase";
-import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
+import { useEvents } from "../context/event-context";
 
 function DataFromUser() {
   const navigate = useNavigate();
-  const [events, setEvents] = useState([]);
-
-  const getEvents = async () => {
-    const querySnapshot = await getDocs(collection(db, "events"));
-    const events = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    setEvents(events);
-  };
-
-  useEffect(() => {
-    getEvents();
-  }, []);
+  const events = useEvents();
 
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "events", id));
       alert("Event has been deleted");
-      // window.location.reload();
-      const eventsCopy = events.filter((event) => event.id !== id);
-      setEvents(eventsCopy);
+      window.location.reload();
     } catch (error) {
       console.error("Error deleting event: ", error);
     }
@@ -45,6 +34,7 @@ function DataFromUser() {
   const handleEdit = (id) => {
     navigate(`/update/${id}`);
   };
+
   return (
     <div className="my-14 mx-14 rounded-3xl bg-gray-100 max-w-screen">
       <div className="flex flex-col items-center mb-2 mx-16">
@@ -90,9 +80,13 @@ function DataFromUser() {
                     {event.eventName}
                   </th>
                   <td className="px-4 py-4">
-                    <Link to={event.eventImage || alert("Tidak ada gambar")} target="_blank" className="text-blue-700">
-                      Lihat gambar
-                    </Link>
+                    {event.eventImage ? (
+                      <Link to={event.eventImage} target="_blank" className="text-blue-700">
+                        Lihat gambar
+                      </Link>
+                    ) : (
+                      <span className="text-red-900 cursor-not-allowed">No picture</span>
+                    )}
                   </td>
                   <td className="px-4 py-4 bg-gray-200 dark:bg-gray-800">{event.eventCategory}</td>
                   <td className="px-4 py-4 ">

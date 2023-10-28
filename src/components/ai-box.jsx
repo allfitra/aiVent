@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setPrompt, setResult, setLoading, reset } from "../stores/aiSlice";
 import OpenAI from "openai";
 
 function AiBox() {
@@ -6,42 +7,33 @@ function AiBox() {
     apiKey: process.env.VITE_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
   });
-
-  const [prompt, setPrompt] = useState("");
-  const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const prompt = useSelector((state) => state.ai.prompt);
+  const result = useSelector((state) => state.ai.result);
+  const loading = useSelector((state) => state.ai.loading);
 
   const handleClick = async () => {
-    setLoading(true);
+    dispatch(setLoading(true));
     try {
-      // const eventKeyword = /event|occasion|gathering|meeting|conference|party/i.test(prompt);
-      // if (!eventKeyword) {
-      //   setResult("Please ask a question related to events.");
-      //   setLoading(false);
-      //   return;
-      // }
-
       const response = await openai.chat.completions.create({
         messages: [
-          { role: "system", content: "You are a helpful assistant that provides information about events." },
+          { role: "system", content: "You will absolutely only answer questions related to event information or similar" },
           { role: "user", content: prompt },
         ],
         model: "gpt-3.5-turbo",
         max_tokens: 300,
       });
-      setResult(response.choices[0].message.content);
-      console.log(result);
-      console.log(response);
+      dispatch(setResult(response.choices[0].message.content));
     } catch (error) {
       console.error(error);
     }
-    setLoading(false);
+    dispatch(setLoading(false));
   };
 
   const handleResetClick = () => {
-    setPrompt("");
-    setResult("");
+    dispatch(reset());
   };
+
   return (
     <>
       <div className=" mt-6 px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
@@ -52,7 +44,7 @@ function AiBox() {
           type="text"
           rows="1"
           value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          onChange={(e) => dispatch(setPrompt(e.target.value))}
           className="block p-2.5 w-full mr-4 text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Your Question..."
         ></textarea>

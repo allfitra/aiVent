@@ -1,5 +1,5 @@
 import SideContent from "./side-content";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../configs/firebase";
 import EventImage from "/assets/images/Event image.jpeg";
 import { Link } from "react-router-dom";

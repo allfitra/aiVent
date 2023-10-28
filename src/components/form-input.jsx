@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { db, storage } from "../configs/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 function FormInputEvent() {
+  const Navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const initialFormState = {
     eventId: null,
@@ -88,8 +90,10 @@ function FormInputEvent() {
               console.log("Success Adding Event: ", docRef.id);
               if (isLoggedIn === "false") {
                 alert("data berhasil di tambahkan, harap menunggu persetujuan admin");
+                Navigate("/");
               } else {
                 alert("data berhasil di tambahkan");
+                Navigate("/event-list");
               }
             } catch (error) {
               console.error("Error adding event: ", error);
@@ -106,8 +110,10 @@ function FormInputEvent() {
         console.log("Success Adding Event: ", docRef.id);
         if (isLoggedIn === "false") {
           alert("data berhasil di tambahkan, harap menunggu persetujuan admin");
+          Navigate("/");
         } else {
           alert("data berhasil di tambahkan");
+          Navigate("/event-list");
         }
       } catch (error) {
         console.error("Error adding event: ", error);

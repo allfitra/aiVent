@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Banner from "/assets/images/Banner.png";
 import EventImage from "/assets/images/Event image.jpeg";
 import SideContent from "./side-content";
-import { db } from "../configs/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { useEvents } from "../context/event-context";
 
 function HomeContent() {
-  const [events, setEvents] = useState([]);
+  const events = useEvents();
 
-  const getEvents = async () => {
-    const querySnapshot = await getDocs(collection(db, "events"));
-    const events = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    setEvents(events);
-  };
-
-  useEffect(() => {
-    getEvents();
-  }, []);
   return (
     <div className="my-14">
       <div className="flex flex-col items-center mx-14 md:mx-auto lg:py-0 mb-10">
