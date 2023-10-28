@@ -1,15 +1,15 @@
 import Footer from "../components/footer";
-import FormInputEvent from "../components/form-input";
+import FormUpdateEvent from "../components/form-update";
 import Header from "../components/header";
 
-function InputEvent() {
+function UpdateEvent() {
   return (
     <>
       <Header></Header>
-      <FormInputEvent></FormInputEvent>
+      <FormUpdateEvent></FormUpdateEvent>
       <Footer></Footer>
     </>
   );
 }
 
-export default InputEvent;
+export default UpdateEvent;

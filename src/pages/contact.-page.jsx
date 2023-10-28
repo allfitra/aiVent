@@ -1,16 +1,16 @@
 import React from "react";
-import DetailContent from "../components/detail-content";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import ContactContent from "../components/contact-content";
 
-function DetailEvent() {
+function ContactPage() {
   return (
     <>
       <Header></Header>
-      <DetailContent></DetailContent>
+      <ContactContent></ContactContent>
       <Footer></Footer>
     </>
   );
 }
 
-export default DetailEvent;
+export default ContactPage;
