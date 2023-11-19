@@ -42,10 +42,10 @@ function DetailContent() {
     );
   }
   return (
-    <div className="my-14 px-14 ">
+    <div className="my-14 px-4 md:px-14 ">
       <div className="mx-auto max-w-screen-xl lg:py-3 border-t-4 border-[#F96B03]">
         <div className="md:flex md:justify-between">
-          <ul className="max-w-[900px] pr-4 divide-y divide-black dark:divide-gray-700">
+          <ul className="max-w-[900px] md:pr-4 divide-y divide-black dark:divide-gray-700">
             <li className="mb-4">
               <h1 className="text-black font-bold text-4xl ml-10">{event.eventName}</h1>
             </li>
