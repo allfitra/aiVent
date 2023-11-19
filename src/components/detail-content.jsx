@@ -49,7 +49,7 @@ function DetailContent() {
             <li className="mb-4">
               <h1 className="text-black font-bold text-4xl ml-10">{event.eventName}</h1>
             </li>
-            <div className="py-3 min max-h-[1300px]">
+            <div className="py-3 min ">
               <div className=" items-center space-x-4">
                 <div className="bg-gray-300 flex flex-col items-center mx-14 min-w-0 md:min-w-[850px] md:mx-auto md:mb-6 lg:py-0 mb-10 h-[300px]">
                   <img className="max-w-[500px] h-full py-3 px-4" src={event.eventImage || EventImage} alt="logo" />
