@@ -12,11 +12,6 @@ import NotFound from "../components/_404";
 function SetupRoutes() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-  function clearLocalStorage() {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("admin");
-  }
-
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />

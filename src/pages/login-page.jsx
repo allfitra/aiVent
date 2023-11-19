@@ -21,6 +21,7 @@ function LoginPage() {
 
   useEffect(() => {
     getAdmins();
+    localStorage.clear();
   }, []);
 
   const handleChange = (e) => {

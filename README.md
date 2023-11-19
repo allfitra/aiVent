@@ -1,8 +1,59 @@
-# React + Vite
+## Welcome to aiVents || Event Information Portal in Jakarta
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="./public/assets/images/Logo1.png" alt="Logo" height="200"/>
 
-Currently, two official plugins are available:
+## About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+aiVents is a website that displays event information in the Jakarta area. Here users can find out information about events that are taking place or will take place so that they can organize planning whether they want to visit the event or not.
+
+## Key Feature
+
+- User:
+
+  - View Event Information
+    - Home Page
+    - Event Information Detail Page
+  - Request event agenda input
+
+- Admin :
+
+  - View Event Information
+    - Home Page
+    - Event Information Detail Page
+  - Login / Logout
+  - CRUD Event Information
+  - Approve event agenda for user request
+
+## Tech Stack
+
+- React (Vite)
+- Tailwind
+- Firebase
+
+## Getting Started
+
+1. Clone the repository:
+
+```
+$ git clone https://github.com/allfitra/aiVents.git
+```
+
+2. Install dependencies:
+
+```
+$ npm install
+```
+
+3. Run the development server:
+
+```
+$ npm run dev
+```
+
+4. Explore, contribute, and enjoy!
+
+## Support and Contact
+
+For any issues or queries, feel free to reach out to us on [My social media](https://www.linkedin.com/in/alfitra-fadjri/).
+
+# Thank You
